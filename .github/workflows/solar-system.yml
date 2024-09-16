@@ -21,9 +21,9 @@ jobs:
             uses: actions/checkout@v4
 
           - name: Setup NodeJS Version
-            uses: actions/setup-node@v3
+            uses: actions/setup-node@v4
             with:
-              node-version: 18
+              node-version: 20
 
           - name: Install Dependencies
             run: npm install
@@ -31,7 +31,7 @@ jobs:
           - name: npm run code-coverage
             run: npm run coverage
             continue-on-error: true
-          - uses: actions/upload-artifact@v3
+          - uses: actions/upload-artifact@v4
             with:
               name: code coverage result
               path: coverage
@@ -46,7 +46,7 @@ jobs:
           uses: actions/checkout@v4
 
         - name: Setup NodeJS Version
-          uses: actions/setup-node@v3
+          uses: actions/setup-node@v4
           with:
             node-version: 20
     
@@ -57,7 +57,6 @@ jobs:
           run: npm test
           
         - name: Archive Test Result
-          if: always()
           uses: actions/upload-artifact@v4
           with:
             name: Mocha-Test-Result
