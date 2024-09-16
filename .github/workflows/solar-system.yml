@@ -76,7 +76,7 @@ jobs:
             path: test-results.xml
 
 
-            
+
     docker:
       runs-on: ubuntu-latest
       needs: [code-coverage,unit-testing]
@@ -87,9 +87,10 @@ jobs:
         - name: clone repo
           uses: actions/checkout@v4
 
-        - name: Login to github registry
+        - name: Login to github container registry
           uses: docker/login-action@v3
           with:
+           registry: ghcr.io
            username: ${{ github.repository_owner }}
            password: ${{ secrets.GITHUB_TOKEN }}
 
