@@ -5,6 +5,9 @@ metadata:
     app: solar-system
   name: solar-system
   namespace: _{_NAMESPACE_}_
+  
+##ADD Environemtn variables as NAMESPACE=development
+
 spec:
   replicas: _{_REPLICAS_}_
   selector:
