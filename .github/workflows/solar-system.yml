@@ -17,14 +17,25 @@ jobs:
     code-coverage:
         name: code-coverage
         runs-on: ubuntu-latest
+        ##Running mongoDB database connection for testing
+        services: 
+          mongo-db:
+            image: siddharth67/mongo-db:non-prod
+            options: 
+              -- name mongo
+        env:
+          MONGO_URI: 'mongodb://mongo:27017/superData'
+          MONGO_USERNAME: non-prod-user
+          MONGO_PASSWORD: non-prod-password
+        container:                     ##Running it as a container so that node install is in comment
+          image: node:18
         steps:
           - name: Checkout Repository
             uses: actions/checkout@v4
-
-          - name: Setup NodeJS Version
-            uses: actions/setup-node@v4
-            with:
-              node-version: 20
+          # - name: Setup NodeJS Version
+          #   uses: actions/setup-node@v4
+          #   with:
+          #     node-version: 20
 
           - name: cache NPM Dependecies
             uses: actions/cache@v4
@@ -47,6 +58,7 @@ jobs:
 
     unit-testing:
         name: Unit Testing
+##Running mongoDB database connection for testing
         services: 
           mongo-db:
             image: siddharth67/mongo-db:non-prod
