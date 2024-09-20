@@ -38,14 +38,20 @@ jobs:
           #   with:
           #     node-version: 20
 
-          - name: cache NPM Dependecies
-            uses: actions/cache@v4
-            with:
-              path: node_modules
-              key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          # - name: cache NPM Dependecies
+          #   uses: actions/cache@v4
+          #   with:
+          #     path: node_modules
+          #     key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
 
-          - name: Install Dependencies
-            run: npm install
+          # - name: Install Dependencies
+          #   run: npm install
+
+          - name: npm using custom action
+            uses: ./.github/custom-actions/npm-action
+            with: 
+              path-of-the-folder: node_modules
+
 
           - name: npm run code-coverage
             run: npm run coverage
